@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 	while (fgets(result, CACHE_MAX, fp) != NULL) {
 		int i = 0;
 		while (i < CACHE_MAX && result[i] != '\0') {
-			if (count == 3)
+			if (count == 2)
 				printf("%c", result[i]);
 			else if (result[i] == '\n')
 				count++;
