@@ -15,6 +15,7 @@ void execute_as_alice(char command[]) {
     while (fgets(result, CACHE_MAX, fp) != NULL) {
         continue;
     }
+    pclose(fp);
 }
 
 void sanitize(char user[], char *arg) {
