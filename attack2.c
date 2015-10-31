@@ -56,5 +56,5 @@ int main(int argc, char *argv[])
     snprintf(command, sizeof(command), "mv -f /home/alice/Private/password-temp /home/alice/Private/password-%s;", user);
     execute_as_alice(command);
 
-	return 0;
+    return 0;
 }
