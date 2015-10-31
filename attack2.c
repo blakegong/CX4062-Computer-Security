@@ -13,10 +13,8 @@ void execute_as_alice(char command[]) {
     if (fp == NULL)
         printf("ERROR!!\n");
     while (fgets(result, CACHE_MAX, fp) != NULL) {
-        // printf("%s", result);
         continue;
     }
-    // system(command_alice);
 }
 
 void sanitize(char user[], char *arg) {
@@ -34,7 +32,7 @@ int main(int argc, char *argv[])
 {
     FILE *fp;
     char user[15];
-	char command[CACHE_MAX], result[CACHE_MAX], path_to_private[CACHE_MAX];
+	char command[CACHE_MAX], result[CACHE_MAX];
 
     if (argc < 2) {
         printf("Please input username! \n");
@@ -42,7 +40,6 @@ int main(int argc, char *argv[])
     }
 
     sanitize(user, argv[1]);
-    strcpy(path_to_private, "./");
 
     snprintf(command, sizeof(command), "mv -f /home/alice/Private/password-%s /home/alice/Private/password-temp;", user);
     execute_as_alice(command);
