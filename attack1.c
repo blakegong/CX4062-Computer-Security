@@ -3,8 +3,7 @@
 
 #define CACHE_MAX 1024
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     FILE *fp;
     char command[CACHE_MAX], result[CACHE_MAX];
 

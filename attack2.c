@@ -29,8 +29,7 @@ void sanitize(char user[], char *arg) {
     user[pos] = '\0';
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     char user[15];
     char command[CACHE_MAX], result[CACHE_MAX];
 
