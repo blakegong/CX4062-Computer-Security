@@ -31,9 +31,8 @@ void sanitize(char user[], char *arg) {
 
 int main(int argc, char *argv[])
 {
-    FILE *fp;
     char user[15];
-	char command[CACHE_MAX], result[CACHE_MAX];
+    char command[CACHE_MAX], result[CACHE_MAX];
 
     if (argc < 2) {
         printf("Please input username! \n");
